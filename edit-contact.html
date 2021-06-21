@@ -37,6 +37,7 @@
         <script src="config.js"></script>
         <script>
 
+            // creates a event listener for a button
             document.getElementById("homeLink").addEventListener('click',homeLink);
             document.getElementById("editContact").addEventListener('click',editContact);
             document.getElementById("submitForm").addEventListener('click',submitForm);
@@ -99,16 +100,16 @@
 
             }
 
-            function submitForm(e)
+            function submitForm(e)// function to edit the data
             {
-                e.preventDefault();
+                e.preventDefault();//preevents the form from reloading the page
                 
-                const form = new FormData(document.querySelector('#editForm'));
+                const form = new FormData(document.querySelector('#editForm'));// collects the data from the form
                 form.append('apiKey',apiKey);
                 form.append('id',id);
                 console.log("abc");
 
-                fetch(rootPath + 'controller/edit-contact/',{
+                fetch(rootPath + 'controller/edit-contact/',{//server location
                     method:'POST',
                     headers:{'Accept':'application/json, *.*'},
                     body:form
@@ -120,7 +121,7 @@
                     return response.text();
                     console.log(response.text());
                 })
-                .then(function(data){
+                .then(function(data){// checks if the edit was successful
                     if(data=="1")
                     {
                         alert("Contact edit.");
@@ -144,20 +145,20 @@
                 document.getElementById("editContact").hidden=false;
             }
 
-            function deleteContact()
+            function deleteContact()  // the function that deletes the contact
             {
                 var confirmDelete=confirm("Delete contact. Are you sure?");
 
                 if(confirmDelete==true)
                 {
-                    fetch(rootPath+'controller/delete-contact/?id='+id)
+                    fetch(rootPath+'controller/delete-contact/?id='+id)// location to the server
                     .then(function(response)
                     {
                         return response.text();
                         console.log(response.text());
                         alert(response.text);
                     })
-                    .then(function(data){
+                    .then(function(data){// checks if delete was successful 
                         if(data=="1")
                         {
                             homeLink();

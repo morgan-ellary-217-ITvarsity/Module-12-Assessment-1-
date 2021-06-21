@@ -4,14 +4,16 @@
         <title></title>
     </head>
 
-    <body onload="fetchContacts()">
+    <body onload="fetchContacts()">// calls method as the website is loaded
         <div id="table">Contacts loading....</div>
         <button id="refresh" type="button">Refresh</button>
         <button id="addContact"type="button">Add contact</button>
         
-        <script src="config.js"></script>
+        <script src="config.js"></script>// connects to the javascript file
         <script>
 
+
+            // creates a event listener for a button
             document.getElementById("refresh").addEventListener('click',fetchContacts);
             document.getElementById("addContact").addEventListener('click',addContact);
 
@@ -19,13 +21,13 @@
             
             function fetchContacts()
             {
-                fetch(rootPath + "controller/get-contacts/")
+                fetch(rootPath + "controller/get-contacts/")// connects to the server
                 .then(function(response){
                     return response.json();
                 })
 
                 .then(function(data){
-                    displayOutput(data);
+                    displayOutput(data);// sends the data to another function called displayOutput
                     console.log(data);
                 })
             }
@@ -41,19 +43,19 @@
                             <td><h5>${data[a].lastname}</h5></td>
                         </tr>
 
-                        `;
+                        `;// displays the data
                     }
 
                     output+="</table>";
                     document.getElementById("table").innerHTML=output;
             }
 
-            function addContact()
+            function addContact()//opens another webpages
             {
                 window.open("add-contact.html","_self");
             }
 
-            function editContact(id)
+            function editContact(id)//opens another webpages
             {
                 window.open("edit-contact.html?="+id,"_self");
             }
