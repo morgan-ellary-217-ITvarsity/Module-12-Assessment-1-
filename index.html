@@ -13,7 +13,6 @@
         <script>
 
 
-            // creates a event listener for a button
             document.getElementById("refresh").addEventListener('click',fetchContacts);
             document.getElementById("addContact").addEventListener('click',addContact);
 
@@ -21,13 +20,13 @@
             
             function fetchContacts()
             {
-                fetch(rootPath + "controller/get-contacts/")// connects to the server
+                fetch(rootPath + "controller/get-contacts/")
                 .then(function(response){
                     return response.json();
                 })
 
                 .then(function(data){
-                    displayOutput(data);// sends the data to another function called displayOutput
+                    displayOutput(data);
                     console.log(data);
                 })
             }
